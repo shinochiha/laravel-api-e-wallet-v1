@@ -4,7 +4,8 @@ namespace App\Transformers;
 
 use App\User;
 use League\Fractal\TransformerAbstract;
-use Carbon\Carbon;
+use JWTAuth;
+use JWTAuthException;
 
 /**
  * 
@@ -14,13 +15,14 @@ class UserTransformer extends TransformerAbstract
 	
 	public function transform(User $user)
 	{
+
 		return [
+			'id'			=> $user->id,
 			'name'	 	 	=> $user->name,
 			'email'		 	=> $user->email,
 			'avatar'	 	=> $user->avatar,
 			'phone_number'	=> $user->phone_number,
-			'registered' 	=> date('Y-m-d')
+			'registered' 	=> date('Y-m-d'),
 		];
 	}
-
 }
