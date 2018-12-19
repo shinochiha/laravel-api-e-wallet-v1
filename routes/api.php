@@ -17,3 +17,11 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 		Route::put('user/update', 'UserController@update');
 	});
 
+Route::group([    
+    'middleware' => 'cors',    
+    'prefix' => 'password'
+], function () {    
+    Route::post('create', 'PasswordResetController@create');
+    Route::get('find/{token}', 'PasswordResetController@find');
+    Route::post('reset', 'PasswordResetController@reset');
+});
