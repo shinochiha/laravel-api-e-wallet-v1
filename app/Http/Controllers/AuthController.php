@@ -80,12 +80,11 @@ class AuthController extends Controller
 	    			], 404);
 	    		}
 
-	    	$response = fractal()
-		    	->item($user)
-		    	->transformWith(new UserTransformer)
-		    	->toArray();
 
-		    $response['token'] = $token;
+		    $response = [
+		    	'status'=> 'true',
+		    	'token'	=> $token
+		    ];
 
 	    	return response()->json($response, 200);
 	    }	
