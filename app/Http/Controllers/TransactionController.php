@@ -5,26 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Transformers\TransactionTransformer;
 use App\Http\Requests\TransactionRequest;
+use App\Http\Resources\TransactionResource;
 use App\Transaction;
 
 class TransactionController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('jwt.auth', ['except' => 'index']);
+    }
+
     public function index(Transaction $transaction)
     {
-        $transaction = $transaction->all();
-
-        return fractal()
-            ->collection($transaction)
-            ->transformWith(new TransactionTransformer)
-            ->toArray();
+        $transactions = Transaction::all()->sortBy('date');
+        return TransactionResource::collection($transactions);
     }
 
 
 
     public function store(TransactionRequest $request)
     {
-        $transaction = $transaction->create([
+        $transaction = Transaction::create([
             'type'      => $request->type,
             'category'  => $request->category,
             'amount'    => htmlspecialchars($request->amount),
@@ -39,7 +41,7 @@ class TransactionController extends Controller
             ->toArray();
 
         if(!$transaction) {
-            return response()->json(['message' => 'Internal serve Error'],500);
+            return response()->json(['message' => 'Internal server Error'],500);
         } else {
             return response()->json($response, 201);
         }

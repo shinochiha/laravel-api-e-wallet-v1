@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('avatar')->default(url('images/profile.png'))->nullable();
             $table->string('phone_number',13)->unique()->nullable();
-            $table->string('balance');
+            $table->string('balance')->nullable();
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->increments('transaction_id');
             $table->enum('type', ['income','expense']);
             $table->enum('category', ['family', 'sport', 'loan']);
-            $table->bigInteger('amount');
+            $table->string('amount');
             $table->string('note');
             $table->date('date');
             $table->string('user');
