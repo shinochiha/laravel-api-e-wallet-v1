@@ -4,8 +4,6 @@ namespace App\Transformers;
 
 use App\User;
 use League\Fractal\TransformerAbstract;
-use JWTAuth;
-use JWTAuthException;
 
 /**
  * 

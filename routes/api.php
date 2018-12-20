@@ -25,3 +25,8 @@ Route::group([
     Route::get('find/{token}', 'PasswordResetController@find');
     Route::post('reset', 'PasswordResetController@reset');
 });
+
+Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
+	// Transactions
+	Route::apiResource('transactions', TransactionController::class);
+});
