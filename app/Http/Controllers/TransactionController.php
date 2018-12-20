@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Transformers\TransactionTransformer;
 use App\Http\Requests\TransactionRequest;
+use App\Transaction;
 
 class TransactionController extends Controller
 {
 
-    public function index()
+    public function index(Transaction $transaction)
     {
-        return ['message' => 'berhasil'];
+        $transaction = $transaction->all();
+
+        return fractal()
+            ->collection($transaction)
+            ->transformWith(new TransactionTransformer)
+            ->toArray();
     }
 
 

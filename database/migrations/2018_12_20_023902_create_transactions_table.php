@@ -21,7 +21,6 @@ class CreateTransactionsTable extends Migration
             $table->string('note');
             $table->date('date');
             $table->string('user');
-            $table->timestamps();
         });
     }
 
