@@ -15,6 +15,10 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 		Route::get('users', 'UserController@users');
 		Route::post('user/upload', 'UserController@upload');
 		Route::put('user/update', 'UserController@update');
+
+		//transaction
+		Route::apiResource('transactions', TransactionController::class);
+
 	});
 
 Route::group([    
@@ -24,9 +28,4 @@ Route::group([
     Route::post('create', 'PasswordResetController@create');
     Route::get('find/{token}', 'PasswordResetController@find');
     Route::post('reset', 'PasswordResetController@reset');
-});
-
-Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
-	// Transactions
-	Route::apiResource('transactions', TransactionController::class);
 });
