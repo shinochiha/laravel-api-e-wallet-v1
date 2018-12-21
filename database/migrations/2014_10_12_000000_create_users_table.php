@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->boolean('active')->default(false);
+            $table->string('activation_token');
             $table->string('avatar')->default(url('images/profile.png'))->nullable();
             $table->string('phone_number',13)->unique()->nullable();
             $table->string('balance')->nullable();

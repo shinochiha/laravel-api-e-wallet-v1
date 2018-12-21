@@ -10,6 +10,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 		Route::post('auth/login', 'AuthController@login');
 		Route::get('auth/logout', 'AuthController@logout');
     	Route::post('changepassword', 'AuthController@changePassword');
+    	Route::get('register/activate/{token}', 'AuthController@registerActivate');
 
 
 		// user

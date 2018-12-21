@@ -7,13 +7,12 @@ use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use Illuminate\Support\Facades\Hash;
-
-
-use App\Http\Requests;
-use App\User;
 use App\Transformers\UserTransformer;
-use JWTAuth;
+use App\Notifications\SignupActivate;
+use App\Http\Requests;
 use JWTAuthException;
+use App\User;
+use JWTAuth;
 use Auth;
 
 class AuthController extends Controller
@@ -22,9 +21,10 @@ class AuthController extends Controller
     {
     	$user = $user->create([
 
-    		'name'		=> htmlspecialchars(ucwords($request->name)), 
-    		'email'		=> htmlspecialchars($request->email),
-    		'password'	=> htmlspecialchars(Hash::make($request->password))
+    		'name'				=> ucwords($request->name), 
+    		'email'				=> $request->email,
+    		'password'			=> Hash::make($request->password),
+    		'activation_token'	=> str_random(60)
 
     	]);
 
@@ -56,6 +56,8 @@ class AuthController extends Controller
 
 				}
 
+			$user->notify(new SignupActivate($user));
+
 			$response = fractal()
 				->item($user)
 				->transformWith(new UserTransformer)
@@ -70,6 +72,22 @@ class AuthController extends Controller
 
     }
 
+    public function registerActivate($token)
+	{
+
+	    $user = User::where('activation_token', $token)->first();
+	    if (!$user) {
+	        return response()->json([
+	            'message' => 'This activation token is invalid.'
+	        ], 404);
+	    }
+	    $user->active = true;
+	    $user->activation_token = '';
+	    $user->save();
+	    return $user;
+
+	}
+
     public function login(Request $request, User $user)
     {
 
@@ -82,6 +100,7 @@ class AuthController extends Controller
 	    			'email' => $email,
 	    			'password' => $password
 	    		];
+	    		$credentials['active'] = 1;
 
 	    		$token = null;
 	    		try {
@@ -151,7 +170,7 @@ class AuthController extends Controller
     	]);
 
 		return response()->json(['message' => 'Password successfully updated']);
-		
+
     	}
     }
 }
