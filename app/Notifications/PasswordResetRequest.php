@@ -35,7 +35,7 @@ class PasswordResetRequest extends Notification implements ShouldQueue
      */
      public function toMail($notifiable)
      {
-        $url = url('/newpassword?token='.$this->token);
+        $url = 'http://superwallet.herokuapp.com/newpassword?token='.$this->token;
         return (new MailMessage)
             ->line('You are receiving this email because we        received a password reset request for your account.')
             ->action('Reset Password', url($url))
