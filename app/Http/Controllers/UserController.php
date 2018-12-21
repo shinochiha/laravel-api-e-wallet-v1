@@ -27,16 +27,19 @@ class UserController extends Controller
 
     public function getAuthUser(Request $request)
     {
+
     	$user = JWTAuth::authenticate(JWTAuth::getToken());
 
         return fractal()
         	->item($user)
         	->transformWith(new UserTransformer)
         	->toArray();
+            
     }
 
     public function upload(UploadRequest $request)
     {
+
     	$user = JWTAuth::authenticate(JWTAuth::getToken());
         $file = $request->file('avatar');
         $filename = date('Ymd') . str_random(6) . '.' . $file->getClientOriginalExtension();
@@ -46,7 +49,8 @@ class UserController extends Controller
             ->where('id', $user->id)
             ->update(['avatar' => url('images/'.$filename)]);
             
-        return response()->json(['message' => 'photo uploaded'],201);    
+        return response()->json(['message' => 'photo uploaded'],201);   
+
     }
 
     public function update(UpdateRequest $request)
@@ -58,18 +62,24 @@ class UserController extends Controller
         $phone_number   = $request->input('phone_number');
 
         $user->update([
+
             'name'        => ucwords($name),
             'phone_number'=> $phone_number,
+
         ]);
 
         $response = [
+
             'msg' => 'Update data success',
             'data' => $user
+
         ];
 
         return fractal()
         	->item($user)
         	->transformWith(new UserTransformer)
         	->toArray();
+
     }
+
 }

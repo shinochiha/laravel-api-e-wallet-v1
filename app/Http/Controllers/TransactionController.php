@@ -32,7 +32,7 @@ class TransactionController extends Controller
             'amount'    => htmlspecialchars($request->amount),
             'note'      => htmlspecialchars($request->note),
             'date'      => $request->date,
-            'user'      => htmlspecialchars($request->user)
+            'user'      => htmlspecialchars(ucwords($request->user))
         ]);
 
         $response = fractal()
