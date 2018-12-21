@@ -29,7 +29,8 @@ class TransactionRequest extends FormRequest
             'amount'    => 'required',
             'note'      => 'required',     
             'date'      => 'required',
-            'user'      => 'required'
+            'user'      => 'required',
+            'account_id'=> 'required'
         ];
     }
 }

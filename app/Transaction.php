@@ -16,6 +16,12 @@ class Transaction extends Model
     	'amount',
     	'note',
     	'date',
-    	'user'
+    	'user',
+        'account_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'id');
+    }
 }

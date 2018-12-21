@@ -21,6 +21,11 @@ class CreateTransactionsTable extends Migration
             $table->string('note');
             $table->date('date');
             $table->string('user');
+            $table->integer('account_id')->unsigned();
+
+            $table->foreign('account_id')
+                  ->references('id')
+                  ->on('users');
         });
     }
 

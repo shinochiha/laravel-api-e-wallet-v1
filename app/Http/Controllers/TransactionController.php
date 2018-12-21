@@ -39,7 +39,8 @@ class TransactionController extends Controller
             'amount'    => htmlspecialchars($request->amount),
             'note'      => htmlspecialchars($request->note),
             'date'      => $request->date,
-            'user'      => htmlspecialchars(ucwords($request->user))
+            'user'      => htmlspecialchars(ucwords($request->user)),
+            'account_id'=> htmlspecialchars($request->account_id)
 
         ]);
 
@@ -70,7 +71,8 @@ class TransactionController extends Controller
             'amount'    => htmlspecialchars($request->amount),
             'note'      => htmlspecialchars($request->note),
             'date'      => $request->date,
-            'user'      => htmlspecialchars(ucwords($request->user))
+            'user'      => htmlspecialchars(ucwords($request->user)),
+            'account_id'=> htmlspecialchars($request->account_id)
 
         ]);
 

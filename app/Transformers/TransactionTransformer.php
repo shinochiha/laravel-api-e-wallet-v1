@@ -13,6 +13,7 @@ class TransactionTransformer extends TransformerAbstract
 	public function transform(Transaction $transaction)
 	{
 		return [
+			'account_id'		=> $transaction->account_id,
 			'transaction_id'	=> $transaction->transaction_id,
 			'type'				=> $transaction->type,
 			'category'			=> $transaction->category,
