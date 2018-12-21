@@ -15,6 +15,7 @@ use App\User;
 use JWTAuth;
 use Auth;
 
+
 class AuthController extends Controller
 {
     public function register(RegisterRequest $request, User $user)
@@ -97,8 +98,10 @@ class AuthController extends Controller
     	if($user = User::where('email', $email)->first()) {
 
 	    		$credentials = [
+
 	    			'email' => $email,
 	    			'password' => $password
+
 	    		];
 	    		$credentials['active'] = 1;
 
@@ -125,7 +128,9 @@ class AuthController extends Controller
 		    $response = [
 
 		    	'status'=> 'true',
-		    	'token'	=> $token
+		    	'access_token' 	=> $token,
+				'token_type' 	=> 'bearer'
+
 
 		    ];
 

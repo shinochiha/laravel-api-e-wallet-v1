@@ -50,13 +50,18 @@ class PasswordResetController extends Controller
             ->first();
         if (!$passwordReset)
             return response()->json([
+
                 'message' => 'This password reset token is invalid.'
             ], 404);
+
         if (Carbon::parse($passwordReset->updated_at)->addMinutes(720)->isPast()) {
+
             $passwordReset->delete();
             return response()->json([
+
                 'message' => 'This password reset token is invalid.'
             ], 404);
+            
         }
         return response()->json($passwordReset);
     }
@@ -64,26 +69,38 @@ class PasswordResetController extends Controller
     public function reset(ResetRequest $request)
     {
         $passwordReset = PasswordReset::where([
+
             ['token', $request->token],
             ['email', $request->email]
+
         ])->first();
+
         if (!$passwordReset)
             return response()->json([
+
                 'message' => 'This password reset token is invalid.'
             ], 404);
+
         $user = User::where('email', $passwordReset->email)->first();
         if (!$user)
+
             return response()->json([
                 'message' => "We can't find a user with that e-mail address."
             ], 404);
+
         $user->password = Hash::make($request->password);
+
         $user->save();
+
         $passwordReset->delete();
+
         $user->notify(new PasswordResetSuccess($passwordReset));
 
         $response = [
+
             'message' => 'Reset Password Success',
             'data'    => $user
+
         ];
 
         return response()->json($response, 201);
