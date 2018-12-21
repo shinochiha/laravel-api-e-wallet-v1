@@ -20,11 +20,26 @@ class TransactionController extends Controller
 
     }
 
-    public function index(Transaction $transaction)
+    public function index()
     {
 
-        $transactions = Transaction::all()->sortBy('date');
-        return TransactionResource::collection($transactions);
+        // $transactions = Transaction::all()->sortBy('date');
+        // return TransactionResource::collection($transactions);
+
+        $transactions = Transaction::all();
+        foreach ($transactions as $transaction ) {
+             $transaction->view_transaction = [
+                'href'  => 'api/v1/transaction/' . $transaction->transaction_id,
+                'method'=> 'GET'
+             ];
+         } 
+
+         $response = [
+            'msg'   => 'List of all Transactions',
+            'Transactions' => $transactions
+         ];
+
+         return response()->json($response, 200);
 
     }
 
