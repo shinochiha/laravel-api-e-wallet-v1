@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    /*
+    * mehod user for see all users
+    */
     public function users(User $user)
     {
     	$users = $user->all();
@@ -25,6 +28,9 @@ class UserController extends Controller
     		->toArray();
     }
 
+    /*
+    *method see one user, for see data one user
+    */
     public function getAuthUser(Request $request)
     {
 
@@ -37,6 +43,9 @@ class UserController extends Controller
             
     }
 
+    /*
+    *method upload for upload foto/avatar in profile user
+    */
     public function upload(UploadRequest $request)
     {
 
@@ -53,6 +62,9 @@ class UserController extends Controller
 
     }
 
+    /*
+    * Method Update for update name and phone_number user
+    */
     public function update(UpdateRequest $request)
     {
 

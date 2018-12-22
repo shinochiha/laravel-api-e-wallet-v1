@@ -18,6 +18,9 @@ use Auth;
 
 class AuthController extends Controller
 {
+	/*
+	*Method register user,in filed ,name,email,password
+	*/
     public function register(RegisterRequest $request, User $user)
     {
     	$user = $user->create([
@@ -73,6 +76,9 @@ class AuthController extends Controller
 
     }
 
+    /*
+    * Method activation acount send in gmail
+    */
     public function registerActivate($token)
 	{
 
@@ -89,7 +95,9 @@ class AuthController extends Controller
 	    return redirect('https://superwallet.herokuapp.com/verification');
 
 	}
-
+	/*
+	* Method Login for user in field email and password
+	*/
     public function login(Request $request, User $user)
     {
 
@@ -142,6 +150,9 @@ class AuthController extends Controller
 	    	return response()->json(['msg' => 'Email or Password are incorrect'], 404);
     }
 
+    /*
+    * Method Logout for user / delete token user
+    */
     public function logout()
     {
 
@@ -157,6 +168,9 @@ class AuthController extends Controller
         }
     }
 
+    /*
+    * Method Change password user,in field,current_password,newpassword,confirmnewpassword
+    */
     public function changePassword(ChangePasswordRequest $request)
     {
     	$input = $request->all();

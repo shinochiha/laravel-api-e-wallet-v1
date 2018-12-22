@@ -16,6 +16,9 @@ use App\Http\Requests\ResetRequest;
 
 class PasswordResetController extends Controller
 {
+    /*
+    * Method create for send email user to get email reset password 
+    */
     public function create (CreateRequest $request)
     {
 
@@ -44,6 +47,9 @@ class PasswordResetController extends Controller
         ],200);
     }
 
+    /*
+    * Method find for get user reset password 
+    */
     public function find($token)
     {
     	$passwordReset = PasswordReset::where('token', $token)
@@ -66,6 +72,9 @@ class PasswordResetController extends Controller
         return response()->json($passwordReset);
     }
 
+    /*
+    * Method reset for reset password users/ forgot password
+    */
     public function reset(ResetRequest $request)
     {
         $passwordReset = PasswordReset::where([
