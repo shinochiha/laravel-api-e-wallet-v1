@@ -40,7 +40,7 @@ class SignupActivate extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = 'https://superwallet.herokuapp.com/verification?link=' . 'https://api-simplewallet-v1.herokuapp.com/api/v1/register/activate/' . $notifiable->activation_token;
+        $url = 'https://api-simplewallet-v1.herokuapp.com/api/v1/register/activate/' . $notifiable->activation_token;
         
     return (new MailMessage)
         ->subject('Confirm your account')

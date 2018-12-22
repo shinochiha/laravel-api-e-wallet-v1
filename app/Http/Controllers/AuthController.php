@@ -85,7 +85,8 @@ class AuthController extends Controller
 	    $user->active = true;
 	    $user->activation_token = '';
 	    $user->save();
-	    return $user;
+
+	    return redirect('https://superwallet.herokuapp.com/verification');
 
 	}
 
