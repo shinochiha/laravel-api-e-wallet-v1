@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Transformers\UserTransformer;
 use App\Notifications\SignupActivate;
 use App\Http\Requests;
-use JWTAuthException;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
 use JWTAuth;
 use Auth;
@@ -32,48 +32,31 @@ class AuthController extends Controller
 
     	]);
 
-			$credentials = [
+			$credentials = $request->only('email', 'password');
 
-				'email' => $request->email,
-				'password' => $request->password
+			try {
+            // attempt to verify the credentials and create a token for the user
+	            if (! $token = JWTAuth::attempt($credentials)) {
+	                return response()->json(['error' => 'invalid_credentials'], 401);
+	            }
+	        } catch (JWTException $e) {
+	            // something went wrong whilst attempting to encode the token
+	            return response()->json(['error' => 'could_not_create_token'], 500);
+	        }
 
-			];
+	        // to send verify at gmail
+	        $user->notify(new SignupActivate($user));
 
-			if($user->save()) {
-
-				$token = null;
-				try {
-
-					if(!$token = JWTAuth::attempt($credentials)) {
-
-						return response()->json([
-							'msg' => 'Email or Password are incorrect' 
-						], 404);
-
-					}
-
-				} catch (JWTException $e) {
-
-					return response()->json([
-						'msg' => 'Failed to create token'
-					], 404);
-
-				}
-
-			$user->notify(new SignupActivate($user));
-
+	        // response with fractal
 			$response = fractal()
 				->item($user)
 				->transformWith(new UserTransformer)
 				->toArray();
 
-			$response['token'] = $token;
+			$response['access_token'] = compact('token');
 
-
-			return response()->json($response, 201);
-
-		}
-
+	        // all good so return the token
+	        return response()->json($response, 201);
     }
 
     /*
