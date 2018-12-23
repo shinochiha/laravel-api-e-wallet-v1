@@ -13,12 +13,12 @@ use JWTAuth;
 class TransactionController extends Controller
 {
 
-    public function __construct()
-    {
+    // public function __construct()
+    // {
 
-        $this->middleware('jwt.auth', ['except' => 'index']);
+    //     $this->middleware('jwt.auth', ['except' => 'index']);
 
-    }
+    // }
 
     public function index()
     {

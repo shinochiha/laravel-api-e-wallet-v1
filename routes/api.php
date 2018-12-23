@@ -18,6 +18,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 		Route::get('users', 'UserController@users');
 		Route::post('user/upload', 'UserController@upload');
 		Route::put('user/update', 'UserController@update');
+		Route::delete('user/delete/{id}', 'UserController@destroy');
 
 		//transaction
 		Route::apiResource('transactions', TransactionController::class);

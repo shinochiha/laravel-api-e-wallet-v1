@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('jwt.auth');
-    }
 
     /*
     * mehod user for see all users
@@ -97,6 +93,29 @@ class UserController extends Controller
         	->transformWith(new UserTransformer)
         	->toArray();
 
+    }
+
+    public function destroy($id)
+    {
+        $user = User::where('id' , $id)->delete();
+
+        if ($user) {
+
+            return response()->json([
+
+                'message' => 'User has been deleted'
+
+            ],200);
+
+        } else {
+
+            return response()->json([
+
+                'message' => 'User not found'
+                
+            ], 404);
+
+        }
     }
 
 }
