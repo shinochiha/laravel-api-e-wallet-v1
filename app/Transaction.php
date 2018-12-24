@@ -12,16 +12,15 @@ class Transaction extends Model
 
     protected $fillable = [
     	'type',
-    	'category',
+    	'category_id',
     	'amount',
     	'note',
     	'date',
-    	'user',
-        'account_id'
+    	'user'
     ];
 
-    public function user()
+    public function category()
     {
-        return $this->belongsTo('App\User', 'id');
+        return $this->belongsTo('App\Category', 'category_id');
     }
 }

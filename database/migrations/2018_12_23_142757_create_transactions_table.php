@@ -16,16 +16,15 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('transaction_id');
             $table->enum('type', ['income','expense']);
-            $table->enum('category', ['family', 'sport', 'loan']);
+            $table->integer('category_id')->unsigned()->index();
             $table->string('amount');
             $table->string('note');
             $table->date('date');
             $table->string('user');
-            $table->integer('account_id')->unsigned();
 
-            $table->foreign('account_id')
-                  ->references('id')
-                  ->on('users');
+            $table->foreign('category_id')
+                  ->references('category_id')
+                  ->on('categories');
         });
     }
 

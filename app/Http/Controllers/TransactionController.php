@@ -13,12 +13,6 @@ use JWTAuth;
 class TransactionController extends Controller
 {
 
-    // public function __construct()
-    // {
-
-    //     $this->middleware('jwt.auth', ['except' => 'index']);
-
-    // }
 
     public function index()
     {
@@ -29,7 +23,7 @@ class TransactionController extends Controller
         $transactions = Transaction::all();
         foreach ($transactions as $transaction ) {
              $transaction->view_transaction = [
-                'href'  => 'api/v1/transaction/' . $transaction->transaction_id,
+                'href'  => 'api/v1/transactions/' . $transaction->transaction_id,
                 'method'=> 'GET'
              ];
          } 
@@ -50,12 +44,11 @@ class TransactionController extends Controller
         $transaction = Transaction::create([
 
             'type'      => $request->type,
-            'category'  => $request->category,
+            'category_id'  => $request->category_id,
             'amount'    => htmlspecialchars($request->amount),
             'note'      => htmlspecialchars($request->note),
             'date'      => $request->date,
             'user'      => htmlspecialchars(ucwords($request->user)),
-            'account_id'=> htmlspecialchars($request->account_id)
 
         ]);
 
