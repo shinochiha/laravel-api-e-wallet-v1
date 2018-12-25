@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 
 
+if (env('APP_ENV') === 'production') {
+    URL::forceSchema('https');
+}
+
 Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 	
 		// Authentication
