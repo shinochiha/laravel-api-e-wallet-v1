@@ -17,7 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->increments('transaction_id');
             $table->enum('type', ['income','expense']);
             $table->integer('category_id')->unsigned()->index();
-            $table->string('amount');
+            $table->decimal('amount');
             $table->string('note');
             $table->date('date');
             $table->string('user');
