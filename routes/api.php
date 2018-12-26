@@ -26,6 +26,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 
 		//transaction
 		Route::apiResource('transactions', TransactionController::class);
+		Route::get('transactions/{id}', 'TransactionController@show');
 		//category
 		Route::apiResource('category', CategoryController::class);
 

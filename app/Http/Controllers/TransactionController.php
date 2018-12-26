@@ -8,6 +8,7 @@ use App\Http\Requests\TransactionRequest;
 use App\Http\Resources\TransactionResource;
 use App\Transaction;
 use JWTAuth;
+use DB;
 
 
 class TransactionController extends Controller
@@ -16,25 +17,15 @@ class TransactionController extends Controller
 
     public function index()
     {
+        $transaction = DB::table('transactions')
+            ->orderBy('transaction_id')->get()
+            ->all();
 
-        // $transactions = Transaction::all()->sortBy('date');
-        // return TransactionResource::collection($transactions);
+        $response = [
+            'data' => $transaction
+        ];
 
-        $transactions = Transaction::all();
-        foreach ($transactions as $transaction ) {
-             $transaction->view_transaction = [
-                'href'  => 'api/v1/transactions/' . $transaction->transaction_id,
-                'method'=> 'GET'
-             ];
-         } 
-
-         $response = [
-            'msg'   => 'List of all Transactions',
-            'Transactions' => $transactions
-         ];
-
-         return response()->json($response, 200);
-
+        return response()->json($response, 200);
     }
 
 
@@ -66,6 +57,11 @@ class TransactionController extends Controller
             return response()->json($response, 201);
 
         }
+    }
+
+    public function show($id)
+    {
+        return ['user' => Transaction::findOrFail($id)];
     }
 
 
