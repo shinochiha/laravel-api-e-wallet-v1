@@ -79,7 +79,6 @@ class TransactionController extends Controller
             'note'      => htmlspecialchars($request->note),
             'date'      => $request->date,
             'user'      => htmlspecialchars(ucwords($request->user)),
-            'account_id'=> htmlspecialchars($request->account_id)
 
         ]);
 
