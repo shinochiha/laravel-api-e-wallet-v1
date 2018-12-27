@@ -13,7 +13,10 @@ use DB;
 
 class TransactionController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('jwt.auth', ['except' => 'index']);
+    }
 
     public function index()
     {
