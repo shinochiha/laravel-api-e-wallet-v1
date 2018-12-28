@@ -15,7 +15,7 @@ class TransactionTransformer extends TransformerAbstract
 		return [
 			'transaction_id'	=> $transaction->transaction_id,
 			'user_id'			=> $transaction->user_id,
-			'type'				=> $transaction->type,
+			'type_id'			=> $transaction->type_id,
 			'category'			=> $transaction->category,
 			'amount'			=> $transaction->amount,
 			'note'				=> $transaction->note,

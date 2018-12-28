@@ -11,7 +11,7 @@ class Transaction extends Model
     protected $primaryKey = 'transaction_id';
 
     protected $fillable = [
-    	'type',
+    	'type_id',
     	'category_id',
     	'amount',
     	'note',

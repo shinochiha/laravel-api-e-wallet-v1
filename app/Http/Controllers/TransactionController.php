@@ -37,7 +37,7 @@ class TransactionController extends Controller
     {   
         $transaction = Transaction::create([
 
-            'type'      => $request->type,
+            'type_id'      => $request->type_id,
             'category_id'  => $request->category_id,
             'amount'    => htmlspecialchars($request->amount),
             'note'      => htmlspecialchars($request->note),
