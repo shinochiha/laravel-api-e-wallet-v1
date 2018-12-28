@@ -25,7 +25,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 		Route::delete('user/delete/{id}', 'UserController@destroy');
 
 		//transaction
-		Route::apiResource('transactions', TransactionController::class);
+		Route::post('transactions', 'TransactionController@store');
 		Route::get('transactions/{id}', 'TransactionController@show');
 		//category
 		Route::apiResource('category', CategoryController::class);
