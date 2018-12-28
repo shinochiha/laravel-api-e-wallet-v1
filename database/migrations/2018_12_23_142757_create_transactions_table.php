@@ -16,7 +16,7 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('transaction_id');
             $table->integer('user_id')->unsigned();
-            $table->enum('type', ['income','expense']);
+            $table->enum('type', [0, 1, 2]);
             $table->integer('category_id')->unsigned()->index();
             $table->decimal('amount');
             $table->string('note');
