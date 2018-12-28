@@ -37,13 +37,13 @@ class TransactionController extends Controller
     {   
         $transaction = Transaction::create([
 
-            'type_id'      => $request->type_id,
-            'category_id'  => $request->category_id,
-            'amount'    => htmlspecialchars($request->amount),
-            'note'      => htmlspecialchars($request->note),
-            'date'      => $request->date,
-            'user'      => htmlspecialchars(ucwords($request->user)),
-            'user_id'   => JWTAuth::authenticate()->id,
+            'type_id'       => $request->type_id,
+            'category_id'   => $request->category_id,
+            'amount'        => $request->amount,
+            'note'          => $request->note,
+            'date'          => $request->date,
+            'user'          => ucwords($request->user),
+            'user_id'       => JWTAuth::authenticate()->id,
 
         ]);
 
@@ -74,15 +74,29 @@ class TransactionController extends Controller
 
         $transaction->update([
 
-            'type'      => $request->type,
-            'category'  => $request->category,
-            'amount'    => htmlspecialchars($request->amount),
-            'note'      => htmlspecialchars($request->note),
-            'date'      => $request->date,
-            'user'      => htmlspecialchars(ucwords($request->user)),
+            'type_id'       => $request->type_id,
+            'category_id'   => $request->category_id,
+            'amount'        => $request->amount,
+            'note'          => $request->note,
+            'date'          => $request->date,
+            'user'          => ucwords($request->user),
+            'user_id'       => JWTAuth::authenticate()->id,
 
         ]);
 
-        return response()->json($transaction, 200);
+        $response = fractal()
+            ->item($transaction)
+            ->transformWith(new TransactionTransformer)
+            ->toArray();
+
+        if(!$transaction) {
+
+            return response()->json(['message' => 'Internal server Error'],500);
+
+        } else {
+
+            return response()->json($response, 201);
+
+        }
     }
 }

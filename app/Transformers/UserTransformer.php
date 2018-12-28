@@ -25,6 +25,7 @@ class UserTransformer extends TransformerAbstract
 			'avatar'	 	=> $user->avatar,
 			'phone_number'	=> $user->phone_number,
 			'status'		=> $user->active,
+			'balance'		=> $user->balance,
 			'registered' 	=> date('Y-m-d'),
 		];
 	}

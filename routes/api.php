@@ -27,6 +27,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 		//transaction
 		Route::post('transactions', 'TransactionController@store');
 		Route::get('transactions/{id}', 'TransactionController@show');
+		Route::put('transaction/{transaction}', 'TransactionController@update');
 		//category
 		Route::apiResource('category', CategoryController::class);
 		//type
