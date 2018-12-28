@@ -3,6 +3,7 @@
 namespace App\Transformers;
 
 use App\User;
+use App\Transformers\TransactionTransformer;
 use League\Fractal\TransformerAbstract;
 
 /**
@@ -10,7 +11,10 @@ use League\Fractal\TransformerAbstract;
  */
 class UserTransformer extends TransformerAbstract
 {
-	
+	protected $defaultIncludes = [
+		'transactions'
+	];
+
 	public function transform(User $user)
 	{
 
@@ -23,5 +27,12 @@ class UserTransformer extends TransformerAbstract
 			'status'		=> $user->active,
 			'registered' 	=> date('Y-m-d'),
 		];
+	}
+
+	public function includeTransactions(User $user)
+	{
+		$transactions = $user->transactions;
+
+		return $this->collection($transactions, new TransactionTransformer);
 	}
 }

@@ -16,11 +16,17 @@ class Transaction extends Model
     	'amount',
     	'note',
     	'date',
-    	'user'
+    	'user',
+        'user_id'
     ];
 
     public function category()
     {
         return $this->belongsTo('App\Category', 'category_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

@@ -34,7 +34,7 @@ class TransactionController extends Controller
 
 
     public function store(TransactionRequest $request)
-    {
+    {   
         $transaction = Transaction::create([
 
             'type'      => $request->type,
@@ -43,6 +43,7 @@ class TransactionController extends Controller
             'note'      => htmlspecialchars($request->note),
             'date'      => $request->date,
             'user'      => htmlspecialchars(ucwords($request->user)),
+            'user_id'   => JWTAuth::authenticate()->id,
 
         ]);
 

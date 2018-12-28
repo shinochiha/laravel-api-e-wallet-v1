@@ -14,12 +14,13 @@ class TransactionTransformer extends TransformerAbstract
 	{
 		return [
 			'transaction_id'	=> $transaction->transaction_id,
+			'user_id'			=> $transaction->user_id,
 			'type'				=> $transaction->type,
 			'category'			=> $transaction->category,
 			'amount'			=> $transaction->amount,
 			'note'				=> $transaction->note,
 			'date'				=> $transaction->date,
-			'user'				=> $transaction->user
+			'user'				=> $transaction->user,
 		];
 	}
 }

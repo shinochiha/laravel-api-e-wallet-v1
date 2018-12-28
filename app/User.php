@@ -38,8 +38,8 @@ class User extends Authenticatable
         return [];
     }
 
-    public function transaction()
+    public function transactions()
     {
-        return $this->hasMany('App\Transaction', 'account_id');
+        return $this->hasMany('App\Transaction', 'transaction_id');
     }
 }

@@ -15,6 +15,7 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('transaction_id');
+            $table->integer('user_id')->unsigned();
             $table->enum('type', ['income','expense']);
             $table->integer('category_id')->unsigned()->index();
             $table->decimal('amount');
@@ -25,6 +26,10 @@ class CreateTransactionsTable extends Migration
             $table->foreign('category_id')
                   ->references('category_id')
                   ->on('categories');
+
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users');      
         });
     }
 
