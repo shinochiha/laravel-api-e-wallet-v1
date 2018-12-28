@@ -99,4 +99,15 @@ class TransactionController extends Controller
 
         }
     }
+
+    public function destroy(Transaction $transaction)
+    {   
+        // $this->authorize('delete', $transaction);
+
+        $transaction->delete();
+
+        return response()->json([
+            'message'   => 'Transaction deleted'
+        ]);
+    }
 }
