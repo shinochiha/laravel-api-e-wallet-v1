@@ -18,7 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('type_id')->unsigned();
             $table->integer('category_id')->unsigned();
-            $table->decimal('amount');
+            $table->bigInteger('amount');
             $table->string('note');
             $table->date('date');
             $table->string('user');
