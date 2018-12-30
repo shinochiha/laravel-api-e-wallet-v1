@@ -25,7 +25,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name'        => 'required|string|min:5|max:255',
-            'phone_number'=> 'numeric|min:11|max:13'
+            'phone_number'=> 'string|min:11|max:13'
         ];
     }
 }
