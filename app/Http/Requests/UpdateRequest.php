@@ -24,8 +24,8 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'        => 'required|string|min:5|max:30',
-            'phone_number'=> 'numeric|min:11|max|13'
+            'name'        => 'required|string|min:5|max:255',
+            'phone_number'=> 'numeric|min:11|max:13'
         ];
     }
 }
