@@ -24,7 +24,11 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
+<<<<<<< HEAD
             'name'        => 'required|string|min:5|max:50',
+=======
+            'name'        => 'required|string|min:5|max:255',
+>>>>>>> 22706b1edc57bcba75684a8fee32af4c8753ae47
             'phone_number'=> 'string|min:11|max:13'
         ];
     }
