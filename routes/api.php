@@ -2,11 +2,6 @@
 
 use Illuminate\Http\Request;
 
-
-if (env('APP_ENV') === 'production') {
-    URL::forceSchema('https');
-}
-
 Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 	
 		// Authentication
@@ -19,7 +14,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 
 		// user
 		Route::get('user', 'UserController@getAuthUser');
-		Route::get('users', 'UserController@users');
 		Route::post('user/upload', 'UserController@upload');
 		Route::put('user/update', 'UserController@update');
 		Route::delete('user/delete/{id}', 'UserController@destroy');

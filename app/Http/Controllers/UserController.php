@@ -16,18 +16,6 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
 
-    /*
-    * mehod user for see all users
-    */
-    public function users(User $user)
-    {
-    	$users = $user->all();
-
-    	return fractal()
-    		->collection($users)
-    		->transformWith(new UserTransformer)
-    		->toArray();
-    }
 
     /*
     *method see one user, for see data one user
@@ -40,6 +28,7 @@ class UserController extends Controller
         return fractal()
         	->item($user)
         	->transformWith(new UserTransformer)
+            ->includeTransactions()
         	->toArray();
             
     }
