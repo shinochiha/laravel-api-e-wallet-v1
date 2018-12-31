@@ -61,6 +61,18 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .hover:hover {
+                background-color: aqua;
+                padding: 7px;
+                color: blue;
+                border-radius: 10px;
+                box-shadow: 4px 0 4px 0;
+            } 
+
+            #klik:hover {
+                color:aqua;
+            }
         </style>
     </head>
     <body>
@@ -80,13 +92,13 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+                <div class="title m-b-md" id="klik">
                     Laravel Endpoint Simple E-Wallet 
                 </div>
 
                 <div class="links">
-                    <a href="https://documenter.getpostman.com/view/5830116/RznBMzgz">Documentation</a>
-                    <a href="https://github.com/shinochiha/laravel-api-e-wallet-v1">GitHub</a>
+                    <a href="https://documenter.getpostman.com/view/5830116/RznBMzgz" class="hover">Documentation</a>
+                    <a href="https://github.com/shinochiha/laravel-api-e-wallet-v1" class="hover">GitHub</a>
                 </div>
             </div>
         </div>
