@@ -41,7 +41,29 @@ $ cp .env.example .env
 
 Open your favourite text editor.
 
-Open .env file, edit with your database credentials and smtp gmail if you want use smtp.
+Open .env file, edit with your database credentials and smtp gmail:
+
+setting .env database
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=db_name
+DB_USERNAME=db_username
+DB_PASSWORD=db_passwor
+```
+
+
+setting .env smtp gmail
+```
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=yourgmail
+MAIL_PASSWORD=yourpasswordgmail
+MAIL_ENCRYPTION=tls
+```
+
 ```sh
 $ composer install
 $ php artisan key:generate
@@ -54,11 +76,15 @@ type localhost:8000
 
 open your terminal type php artisan route:list to show list route API Endpoint
 
+Note: if jwt:secret not working go to <a href="https://github.com/tymondesigns/jwt-auth/issues/1298">here</a> for fixing. 
+
 ## Site Endpoint
-URL: https://api-simplewallet-v1.herokuapp.com
+URL: <a href="https://api-simplewallet-v1.herokuapp.com" target="_blank">https://api-simplewallet-v1.herokuapp.com</a>
 
 Use Postman tool for performing integration testing with your API. Postman Colletion link: 
 - https://www.getpostman.com/collections/3ec6f2042b2767c0c99b
+
+## Document Postman Collections
 - https://documenter.getpostman.com/view/5830116/RznBMzgz
 
 Note: You can change environment Postman type Online URL or Local URL
