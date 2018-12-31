@@ -15,7 +15,15 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    /*
+    * mehod user for see all users
+    */
+    public function users(User $user)
+    {
+        $users = $user->all();
 
+        return $users;
+    }
 
     /*
     *method see one user, for see data one user
