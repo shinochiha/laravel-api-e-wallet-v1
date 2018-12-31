@@ -21,6 +21,7 @@ class TransactionTransformer extends TransformerAbstract
 			'note'				=> $transaction->note,
 			'date'				=> $transaction->date,
 			'user'				=> $transaction->user,
+			'created_at'		=> date('Y-m-d')
 		];
 	}
 }

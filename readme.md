@@ -29,6 +29,7 @@ Simple E-Wallet Restful API using Laravel API Resource (Laravel Version 5.7, PHP
 - [CORS](https://github.com/barryvdh/laravel-cors) Support
 - Custom respond function
 - PostgreSQL Database
+- smtp gmail
 
 ## Installation
 
@@ -36,12 +37,11 @@ Simple E-Wallet Restful API using Laravel API Resource (Laravel Version 5.7, PHP
 $ git clone https://github.com/shinochiha/laravel-api-e-wallet-v1.git
 $ cd laravel-api-e-wallet-v1
 $ cp .env.example .env
-$ composer install
 ```
 
 Open your favourite text editor.
 
-Open .env file, edit with your database credentials.
+Open .env file, edit with your database credentials and smtp gmail if you want use smtp.
 ```sh
 $ composer install
 $ php artisan key:generate
