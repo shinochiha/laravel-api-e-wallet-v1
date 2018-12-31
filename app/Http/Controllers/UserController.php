@@ -71,40 +71,13 @@ class UserController extends Controller
         ]);
 
         $response = [
-
-            'msg' => 'Update data success',
-            'data' => $user
+            'status'    => true,
+            'msg'       => 'Update data success',
+            'data'      => $user
 
         ];
 
-        return fractal()
-        	->item($user)
-        	->transformWith(new UserTransformer)
-        	->toArray();
+        return response()->json($response,200);
 
     }
-
-    public function destroy($id)
-    {
-        $user = User::where('id' , $id)->delete();
-
-        if ($user) {
-
-            return response()->json([
-
-                'message' => 'User has been deleted'
-
-            ],200);
-
-        } else {
-
-            return response()->json([
-
-                'message' => 'User not found'
-                
-            ], 404);
-
-        }
-    }
-
 }

@@ -97,8 +97,8 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://documenter.getpostman.com/view/5830116/RznBMzgz" class="hover">Documentation</a>
-                    <a href="https://github.com/shinochiha/laravel-api-e-wallet-v1" class="hover">GitHub</a>
+                    <a href="https://documenter.getpostman.com/view/5830116/RznBMzgz" class="hover" target="_blank">Documentation</a>
+                    <a href="https://github.com/shinochiha/laravel-api-e-wallet-v1" class="hover" target="_blank">GitHub</a>
                 </div>
             </div>
         </div>
