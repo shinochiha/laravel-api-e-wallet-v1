@@ -5,6 +5,7 @@ namespace App\Transformers;
 use App\User;
 use App\Transformers\TransactionTransformer;
 use League\Fractal\TransformerAbstract;
+use Carbon\Carbon;
 
 /**
  * 
@@ -25,7 +26,7 @@ class UserTransformer extends TransformerAbstract
 			'phone_number'	=> 	$user->phone_number,
 			'status'		=> 	$user->active,
 			'balance'		=> 	$user->transactions->sum('amount'),
-			'registered' 	=> date('Y-m-d'),
+			'created_at'	=> 	Carbon::parse($user->created_at)->diffForHumans(),
 		];
 	}
 
