@@ -36,7 +36,6 @@ class UserController extends Controller
         return fractal()
         	->item($user)
         	->transformWith(new UserTransformer)
-            ->includeTransactions()
         	->toArray();
             
     }
@@ -49,7 +48,7 @@ class UserController extends Controller
 
     	$user = JWTAuth::authenticate(JWTAuth::getToken());
         $file = $request->file('avatar');
-        $filename = date('Ymd') . str_random(6) . '.' . $file->getClientOriginalExtension();
+        $filename = date('dmY') . str_random(6) . '.' . $file->getClientOriginalExtension();
 
         $file->move(public_path('images'),$filename);
         DB::table('users')
