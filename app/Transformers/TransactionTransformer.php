@@ -19,9 +19,9 @@ class TransactionTransformer extends TransformerAbstract
 			'category'			=> $transaction->category,
 			'amount'			=> $transaction->amount,
 			'note'				=> $transaction->note,
-			'date'				=> $transaction->date,
+			'date'				=> date('d-m-Y', strtotime($transaction->date)),
 			'user'				=> $transaction->user,
-			'created_at'		=> date('Y-m-d')
+			'created_at'		=> date('d-M-Y')
 		];
 	}
 }
