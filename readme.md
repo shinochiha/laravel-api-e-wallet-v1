@@ -34,9 +34,9 @@ Simple E-Wallet Restful API using Laravel API Resource (Laravel Version 5.7, PHP
 ## Installation
 
 ```sh
-$ git clone https://github.com/shinochiha/laravel-api-e-wallet-v1.git
-$ cd laravel-api-e-wallet-v1
-$ cp .env.example .env
+git clone https://github.com/shinochiha/laravel-api-e-wallet-v1.git 
+&& laravel-api-e-wallet-v1 
+&& cp .env.example .env
 ```
 
 Open your favourite text editor.
@@ -65,12 +65,12 @@ MAIL_ENCRYPTION=tls
 ```
 
 ```sh
-$ composer install
-$ php artisan key:generate
-$ php artisan jwt:secret
-$ php artisan migrate
-$ php artisan db:seed
-$ php artisan serve
+composer install
+&& php artisan key:generate
+&& php artisan jwt:secret
+&& php artisan migrate
+&& php artisan db:seed
+&& php artisan serve
 ```
 type localhost:8000
 
