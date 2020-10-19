@@ -1,11 +1,11 @@
-# Laravel Simple E-Wallet Restfull Api
+# Laravel Simple E-Wallet Restfull Api / Api Elektronik uang yang sederhana
 <p align="center">
 <a href="https://api-simplewallet-v1.herokuapp.com"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
 Simple E-Wallet Restful API using Laravel API Resource (Laravel Version 5.7, PHP version 7.2).
 
-### Requirements
+### Requirements / Apa saja yang di butuhkan untuk menjalankannya
 - PHP >= 7.1.3
 - Composer
 - OpenSSL PHP Extension
@@ -19,7 +19,7 @@ Simple E-Wallet Restful API using Laravel API Resource (Laravel Version 5.7, PHP
 - Text Editor
 - Postman Tool
 
-## Features
+## Features / Fitur apa saja yang tersedia
 - Validation
 - JWT Authentication
 - Models with proper relationships
@@ -31,7 +31,7 @@ Simple E-Wallet Restful API using Laravel API Resource (Laravel Version 5.7, PHP
 - PostgreSQL Database
 - smtp gmail
 
-## Installation
+## Installation / Cara Instalasi nya
 
 ```sh
 git clone https://github.com/shinochiha/laravel-api-e-wallet-v1.git 
@@ -39,7 +39,7 @@ git clone https://github.com/shinochiha/laravel-api-e-wallet-v1.git
 && cp .env.example .env
 ```
 
-Open your favourite text editor.
+Open your favourite text editor. / Buka editor teks favorit anda
 
 Open .env file, edit with your database credentials and smtp gmail:
 
